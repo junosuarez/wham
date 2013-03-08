@@ -1,0 +1,17 @@
+{
+  "name": "wham",
+  "version": "0.0.0",
+  "description": "whimsical web framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "author": "jden <jason@denizac.org>",
+  "license": "MIT",
+  "dependencies": {
+    "connect": "~2.7.3",
+    "lodash": "~1.0.1",
+    "responsible": "0.0.0-pre"
+  }
+}
