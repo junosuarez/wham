@@ -1,6 +1,6 @@
 {
   "name": "wham",
-  "version": "0.0.0",
+  "version": "0.0.0-pre",
   "description": "whimsical web framework",
   "main": "index.js",
   "scripts": {
@@ -12,6 +12,7 @@
   "dependencies": {
     "connect": "~2.7.3",
     "lodash": "~1.0.1",
-    "responsible": "0.0.0-pre"
+    "responsible": "0.0.0-pre",
+    "qed": "~0.1.0"
   }
 }

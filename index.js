@@ -1,6 +1,7 @@
 var connect = require('connect')
 var http = require('http')
 var responsible = require('responsible')
+var qed = require('qed')
 
 function Wham (serviceName) {
   var endpoints = []
@@ -53,11 +54,26 @@ function Endpoint (name, path) {
 }
 
 ['get','post','put','delete'].forEach(function (method) {
-  Endpoint.prototype[method] = function () {
+  Endpoint.prototype[method] = function (opts, fn, args) {
+    // if (typeof opts === 'function') {
+    //   fn = opts
+    //   opts = {}
+    //   args = Array.prototype.slice.call(arguments, 1)
+    // }
+    // else { args = Array.prototype.slice.call(arguments, 2) }
+
+    var args = Array.prototype.slice.call(arguments, typeof opts === 'function' ? 0 : 1)
+
+    console.log(args, typeof opts, typeof args[0])
+    this[method.toUpperCase()] = qed.apply(null, args)
+
     //console.log(method.toUpperCase() + 'ing ' + this.name + ' (' + this.path + ')')
   }
 })
 
+function handle() {
+  console.log('handlin', this)
+}
 
 var _ = require('lodash')
 function Router(endpoints) {
@@ -68,7 +84,19 @@ function Router(endpoints) {
       return endpoint.path === req.path
     })
     //console.log('at', endpoint)
+    if (endpoint) {
+      console.log('EP', endpoint)
+      if (typeof endpoint[req.method] === 'function') {
+        console.log('foo', endpoint[req.method])
+        return endpoint[req.method](req, res)
+      }
+      console.log('no')
+      return res.send(400, new Error('Unsupoprted method for ' + endpoint.name))
+      return res.error(new Error('Unsupported method for ' + endpoint.name))
+    }
+
     defaultRoute(req, res, next)
+
   }
 }
 
