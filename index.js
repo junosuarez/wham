@@ -78,9 +78,9 @@ function handle() {
 var _ = require('lodash')
 function Router(endpoints) {
   return function (req, res, next) {
-    //console.log(req.url, req.method, req.path, endpoints)
+    console.log('Req rcevied:', req.url, req.method, req.path, endpoints)
     var endpoint = _.find(endpoints, function (endpoint) {
-      //console.log(endpoint.path, req.path)
+      console.log(endpoint.path, req.path)
       return endpoint.path === req.path
     })
     //console.log('at', endpoint)
