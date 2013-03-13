@@ -4,6 +4,10 @@ whimsical web framework
 this is a work in progress. life a the bleeding edge! i sure hope you know what you're doing....
 
 
+## Stability
+
+Experimental: Expect the unexpected. Please provide feedback on api and your use-case.
+
 ## a peek at what your life could be like:
 
     var wham = require('wham')('demo')
