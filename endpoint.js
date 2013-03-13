@@ -1,4 +1,5 @@
 var Houkou = require('houkou')
+var qed = require('qed')
 
 function Endpoint (name, path) {
   if (!name || !path) {
@@ -30,10 +31,11 @@ function Endpoint (name, path) {
 
     var args = Array.prototype.slice.call(arguments, typeof opts === 'function' ? 0 : 1)
 
-    console.log(args, typeof opts, typeof args[0])
+    //console.log(args, typeof opts, typeof args[0])
     this[method.toUpperCase()] = qed.apply(null, args)
 
     //console.log(method.toUpperCase() + 'ing ' + this.name + ' (' + this.path + ')')
+    return this
   }
 })
 

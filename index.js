@@ -1,7 +1,6 @@
 var connect = require('connect')
 var http = require('http')
 var responsible = require('responsible')
-var qed = require('qed')
 var Endpoint = require('./endpoint')
 var Router = require('./router')
 

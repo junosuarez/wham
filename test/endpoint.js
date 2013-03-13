@@ -1,6 +1,7 @@
 var chai = require('chai')
 chai.should()
 var expect = chai.expect
+chai.use(require('chai-interface'))
 
 var Endpoint = require('../endpoint')
 
@@ -29,6 +30,45 @@ describe('Endpoint', function () {
   })
   it('builds a regex', function () {
     var e = Endpoint('foo', '/bax/:qux')
-
+    e.pattern.should.be.instanceof(RegExp)
+  })
+  it('can add get handlers', function () {
+    var handler = function () {}
+    var e = Endpoint('foo', '/foo')
+    expect(e.GET).to.equal(undefined)
+    e.get(handler)
+    e.GET.should.be.a('function')
+  })
+  it('can add post handlers', function () {
+    var handler = function () {}
+    var e = Endpoint('foo', '/foo')
+    expect(e.POST).to.equal(undefined)
+    e.post(handler)
+    e.POST.should.be.a('function')
+  })
+  it('can add put handlers', function () {
+    var handler = function () {}
+    var e = Endpoint('foo', '/foo')
+    expect(e.PUT).to.equal(undefined)
+    e.put(handler)
+    e.PUT.should.be.a('function')
+  })
+  it('can add delete handlers', function () {
+    var handler = function () {}
+    var e = Endpoint('foo', '/foo')
+    expect(e.DELETE).to.equal(undefined)
+    e.delete(handler)
+    e.DELETE.should.be.a('function')
+  })
+  it('can chain multiple method handlers', function () {
+    var handler = function () {}
+    var e = Endpoint('foo', '/foo')
+    e.get(handler).post(handler).put(handler).delete(handler)
+    e.should.have.interface({
+      GET: Function,
+      PUT: Function,
+      POST: Function,
+      DELETE: Function
+    })
   })
 })
