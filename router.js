@@ -15,16 +15,17 @@ function Router(endpoints) {
         return endpoint[req.method](req, res)
       }
 
-      return res.send(400, new Error('Unsupoprted method for ' + endpoint.name))
+      return res.send(400, new Error('Unsupported method for ' + endpoint.name))
       return res.error(new Error('Unsupported method for ' + endpoint.name))
     }
     defaultRoute(req, res, next)
 
   }
-  
+
+  // TODO: the __proto__ property is deprecated
   router.__proto__ = proto // https://gist.github.com/jden/5149561
   router.endpoints = endpoints
-  
+
   return router
 }
 
