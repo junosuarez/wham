@@ -20,6 +20,7 @@ function Wham (serviceName) {
   wham.bam = function (port) {
     // start this wreck
     stack.use(responsible)
+    // TODO: missing new when calling Router
     stack.use(Router(endpoints))
 
     http.createServer(stack).listen(port)
