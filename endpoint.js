@@ -30,9 +30,18 @@ function Endpoint (name, path) {
     // else { args = Array.prototype.slice.call(arguments, 2) }
 
     var args = Array.prototype.slice.call(arguments, typeof opts === 'function' ? 0 : 1)
+    var resHandler
+    if (args.length > 1 && typeof args[args.length-1] === 'function') {
+      resHandler = args.pop() 
+    }
 
     //console.log(args, typeof opts, typeof args[0])
-    this[method.toUpperCase()] = qed.apply(null, args)
+    var handler = qed.apply(null, args)
+
+    if (resHandler) {
+      handler = handler.response(resHandler)
+    }
+    this[method.toUpperCase()] = handler
 
     //console.log(method.toUpperCase() + 'ing ' + this.name + ' (' + this.path + ')')
     return this
