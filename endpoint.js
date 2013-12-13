@@ -22,20 +22,13 @@ function Endpoint (name, path) {
 
 ['get','post','put','delete'].forEach(function (method) {
   Endpoint.prototype[method] = function (opts, fn, args) {
-    // if (typeof opts === 'function') {
-    //   fn = opts
-    //   opts = {}
-    //   args = Array.prototype.slice.call(arguments, 1)
-    // }
-    // else { args = Array.prototype.slice.call(arguments, 2) }
 
     var args = Array.prototype.slice.call(arguments, typeof opts === 'function' ? 0 : 1)
     var resHandler
     if (args.length > 1 && typeof args[args.length-1] === 'function') {
-      resHandler = args.pop() 
+      resHandler = args.pop()
     }
 
-    //console.log(args, typeof opts, typeof args[0])
     var handler = qed.apply(null, args)
 
     if (resHandler) {

@@ -21,10 +21,10 @@ function Router(endpoints) {
     defaultRoute(req, res, next)
 
   }
-  
+
   router.__proto__ = proto // https://gist.github.com/jden/5149561
   router.endpoints = endpoints
-  
+
   return router
 }
 
