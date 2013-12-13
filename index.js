@@ -1,6 +1,9 @@
 var connect = require('connect')
 var http = require('http')
 var responsible = require('responsible')
+responsible.quiet = false
+responsible.verbose = false
+
 var Endpoint = require('./endpoint')
 var Router = require('./router')
 
@@ -8,6 +11,7 @@ function Wham (serviceName) {
   var endpoints = []
 
   var stack = connect()
+  stack.use(responsible)
   stack.use(parseUrl)
   stack.use(connect.query())
 
@@ -19,12 +23,10 @@ function Wham (serviceName) {
 
   wham.bam = function (port) {
     // start this wreck
-    stack.use(responsible)
     stack.use(Router(endpoints))
-
     http.createServer(stack).listen(port)
 
-    //console.log('started ' + serviceName + ' on ' + port)
+    console.log('started ' + serviceName + ' on ' + port)
     stack.started = true
   }
 
