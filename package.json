@@ -6,11 +6,11 @@
   "scripts": {
     "test": "node node_modules/mocha/bin/mocha"
   },
-  "repository": "",
+  "repository": "git@github.com:jden/wham.git",
   "author": "jden <jason@denizac.org>",
   "license": "MIT",
   "dependencies": {
-    "connect": "~2.7.3",
+    "connect": "~2.12.0",
     "lodash": "~1.0.1",
     "responsible": "0.0.0-pre",
     "qed": "~0.2.0",
