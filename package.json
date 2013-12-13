@@ -1,6 +1,6 @@
 {
   "name": "wham",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "whimsical web framework",
   "main": "index.js",
   "scripts": {
