@@ -12,7 +12,7 @@
   "dependencies": {
     "connect": "~2.12.0",
     "lodash": "~1.0.1",
-    "responsible": "0.0.0-pre",
+    "responsible": "~0.1.0",
     "qed": "~0.2.0",
     "houkou": "~0.2.1"
   },
